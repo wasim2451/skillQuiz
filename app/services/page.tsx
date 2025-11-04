@@ -94,7 +94,7 @@ export default function ServicesPage() {
 
               {/* Content Panel */}
               {userType === "employee" ? (
-                <div className="bg-gradient-to-r from-[#3a4a7b]/90 to-[#9ba3b9]/90 rounded-lg p-8 backdrop-blur-sm">
+                <div className="bg-slate-100 rounded-lg p-8">
                   {employeeRegistrationSuccess ? (
                     <SuccessMessage
                       title="Registration Successful!"

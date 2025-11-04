@@ -14,40 +14,40 @@ export default function EmployeeRegistration({
   const [phoneOtpSent, setPhoneOtpSent] = useState(false);
 
   return (
-    <div className="text-white">
-      <h1 className="text-3xl font-semibold text-center mb-8">
+    <div className="text-black ">
+      <h1 className="text-3xl font-bold text-center mb-8">
         Employee Registration
       </h1>
 
       <div className="space-y-6">
         {/* Name Fields */}
         <div>
-          <label className="block mb-2">Name</label>
+          <label className="block mb-2 font-semibold">Name</label>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               type="text"
               placeholder="First Name"
-              className="w-full bg-[#333333] rounded px-4 py-3 text-white placeholder-gray-400 focus:outline-none"
+              className="w-full  rounded px-4 py-3 text-black placeholder-gray-400 focus:outline-none"
             />
             <input
               type="text"
               placeholder="Last Name"
-              className="w-full bg-[#333333] rounded px-4 py-3 text-white placeholder-gray-400 focus:outline-none"
+              className="w-full  rounded px-4 py-3 text-black placeholder-gray-400 focus:outline-none"
             />
           </div>
         </div>
 
         {/* Email Field */}
         <div>
-          <label className="block mb-2">Email</label>
+          <label className="block mb-2 font-semibold">Email</label>
           <div className="flex">
             <input
               type="email"
               placeholder="Enter Email"
-              className="flex-1 bg-[#333333] rounded-l px-4 py-3 text-white placeholder-gray-400 focus:outline-none"
+              className="flex-1 rounded-l px-4 py-3 text-black placeholder-gray-400 focus:outline-none"
             />
             <button
-              className="bg-[#333333] rounded-r px-4 py-3 text-white hover:bg-[#444444]"
+              className="bg-blue-500 rounded-r px-4 py-3 text-white hover:bg-blue-600"
               onClick={() => setEmailOtpSent(true)}
             >
               Get OTP
@@ -58,7 +58,7 @@ export default function EmployeeRegistration({
               <input
                 type="text"
                 placeholder="Enter OTP"
-                className="w-40 bg-[#333333] rounded px-4 py-3 text-white placeholder-gray-400 focus:outline-none"
+                className="w-40  rounded px-4 py-3 text-black placeholder-gray-400 focus:outline-none"
               />
             </div>
           )}
@@ -66,15 +66,15 @@ export default function EmployeeRegistration({
 
         {/* Phone Field */}
         <div>
-          <label className="block mb-2">Phone</label>
+          <label className="block mb-2 font-semibold">Phone</label>
           <div className="flex">
             <input
               type="tel"
               placeholder="Enter Phone No."
-              className="flex-1 bg-[#333333] rounded-l px-4 py-3 text-white placeholder-gray-400 focus:outline-none"
+              className="flex-1  rounded-l px-4 py-3 text-black placeholder-gray-400 focus:outline-none"
             />
             <button
-              className="bg-[#333333] rounded-r px-4 py-3 text-white hover:bg-[#444444]"
+              className="bg-blue-500 rounded-r px-4 py-3 text-white hover:bg-blue-600"
               onClick={() => setPhoneOtpSent(true)}
             >
               Get OTP
@@ -85,7 +85,7 @@ export default function EmployeeRegistration({
               <input
                 type="text"
                 placeholder="Enter OTP"
-                className="w-40 bg-[#333333] rounded px-4 py-3 text-white placeholder-gray-400 focus:outline-none"
+                className="w-40  rounded px-4 py-3 text-black placeholder-gray-400 focus:outline-none"
               />
             </div>
           )}
@@ -93,10 +93,10 @@ export default function EmployeeRegistration({
 
         {/* Upload Resume */}
         <div>
-          <label className="block mb-2">Upload Resume</label>
-          <label className="w-full bg-[#333333] rounded px-4 py-3 text-white hover:bg-[#444444] flex items-center cursor-pointer">
-            <Upload className="w-5 h-5 mr-2" />
-            <span>Upload your Resume</span>
+          <label className="block mb-2 font-semibold">Upload Resume</label>
+          <label className="w-full rounded px-4 py-3 text-white bg-slate-200 border-2 border-slate-200 flex items-center cursor-pointer hover:border-2 hover:border-slate-300">
+            <Upload className="w-5 h-5 mr-2 text-blue-800" />
+            <span className="text-black">Upload your Resume</span>
             <input type="file" className="hidden" accept=".pdf,.doc,.docx" />
           </label>
         </div>
@@ -105,11 +105,11 @@ export default function EmployeeRegistration({
         <div className="flex justify-center gap-4 mt-8">
           <button
             onClick={onNext}
-            className="px-10 py-2 rounded bg-gradient-to-r from-[#4ECDC4] to-[#2d8a84] text-white hover:opacity-90"
+            className="px-10 py-2 rounded bg-green-500 hover:bg-green-600 text-white hover:opacity-90"
           >
             Submit
           </button>
-          <button className="px-10 py-2 rounded bg-[#333333] text-white hover:bg-[#444444]">
+          <button className="px-10 py-2 rounded bg-red-500 text-white hover:bg-red-600">
             Reset
           </button>
         </div>

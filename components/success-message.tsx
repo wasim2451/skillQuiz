@@ -16,7 +16,7 @@ export default function SuccessMessage({
   onContinue,
 }: SuccessMessageProps) {
   return (
-    <div className="text-center text-white">
+    <div className="text-center text-black ">
       <div className="flex justify-center mb-6">
         <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center">
           <CheckCircle className="w-12 h-12 text-green-500" />
@@ -24,11 +24,11 @@ export default function SuccessMessage({
       </div>
 
       <h2 className="text-3xl font-semibold mb-4">{title}</h2>
-      <p className="text-gray-300 mb-8 max-w-md mx-auto">{message}</p>
+      <p className="text-slate-400 mb-8 max-w-md mx-auto">{message}</p>
 
       <button
         onClick={onContinue}
-        className="px-10 py-3 rounded-md bg-gradient-to-r from-[#4ECDC4] to-[#2d8a84] text-white hover:opacity-90 font-medium"
+        className="px-10 py-3 rounded-md bg-green-500 text-white hover:bg-green-600 font-medium"
       >
         {buttonText}
       </button>
