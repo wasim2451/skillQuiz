@@ -197,7 +197,7 @@ export default function AboutPage() {
               preload="none"
               poster="/images/aboutpage/about_video.png"
             >
-              <source
+              <source 
                 src="/images/aboutpage/about_video.mp4"
                 type="video/mp4"
               />
