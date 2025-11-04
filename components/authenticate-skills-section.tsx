@@ -34,7 +34,7 @@ export default function SkillShowcase() {
   }, []);
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-8 md:py-10 bg-white">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Left animated image */}
         <div className="relative w-full md:w-1/3 flex justify-center items-center h-[400px] md:h-[500px] overflow-hidden rounded-xl">

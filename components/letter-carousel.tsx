@@ -65,7 +65,7 @@ export default function LetterCarousel() {
   }, [currentSlide, isAnimating]);
 
   return (
-    <div className="relative w-full md:h-[900px] h-[400px] overflow-hidden bg-white">
+    <div className="relative w-full md:h-[80vh] h-[400px] overflow-hidden bg-white">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -78,22 +78,22 @@ export default function LetterCarousel() {
           }`}
         >
           {/* Background Image */}
-          <div className="absolute inset-0 blur-[1px] brightness-85">
+          <div className="absolute inset-0 blur-[0.5px] brightness-85">
             <Image
               src={slide.backgroundImage || "/placeholder.svg"}
               alt={`${slide.title} background`}
               fill
-              className="object-cover object-top brightness-90"
+              className="object-cover object-top"
               priority={index === 0}
             />
           </div>
 
           {/* Title at bottom of image */}
-          <div className="absolute bottom-10 left-0 right-0 flex flex-col justify-end items-center text-center z-10 px-6">
-            <h3 className="text-2xl md:text-5xl font-extrabold text-white tracking-wide">
+          <div className="absolute bottom-5 md:bottom-16 left-0 right-0 flex flex-col justify-end items-center text-center z-10 px-6">
+            <h3 className="text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-extrabold text-white tracking-wide">
               {slide.title}
             </h3>
-            <p className="text-sm md:text-lg text-gray-100 mt-2 tracking-wider font-bold">
+            <p className="text-sm md:text-xl lg:text-[25px] xl:text-[30px] 2xl:text-[35px] text-gray-100 mt-2 tracking-wider font-bold">
               {slide.description}
             </p>
           </div>
@@ -117,12 +117,12 @@ export default function LetterCarousel() {
       </button>
 
       {/* Indicators */}
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+      <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-2.5 h-2.5 rounded-full transition-all ${
+            className={`md:w-2.5 md:h-2.5 w-1 h-1 rounded-full transition-all ${
               index === currentSlide
                 ? "bg-[#ffff] w-8"
                 : "bg-[#FFE100]"

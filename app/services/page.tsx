@@ -71,12 +71,12 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050e2d] relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#ffff] relative overflow-x-hidden">
       <div className="relative z-10 pt-24">
         <div className="container mx-auto px-4 max-w-5xl py-4 md:py-[50px] text-sm">
           {!isLoggedIn ? (
             // Login Form
-            <div className="bg-gradient-to-r from-[#3a4a7b]/90 to-[#9ba3b9]/90 rounded-lg p-8 backdrop-blur-sm max-w-md mx-auto">
+            <div className="bg-slate-100 rounded-lg md:p-8 p-1 backdrop-blur-sm max-w-md mx-auto">
               <LoginForm onLogin={handleLogin} />
             </div>
           ) : (

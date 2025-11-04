@@ -22,9 +22,9 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
   };
 
   return (
-    <div className="text-white">
-      <h1 className="text-3xl font-semibold text-center mb-2">Login</h1>
-      <p className="text-center text-gray-300 mb-8">
+    <div className="text-black p-4 md:p-8">
+      <h1 className="text-3xl font-bold text-center mb-2 tracking-wider">Login</h1>
+      <p className="text-center text-gray-500 mb-8">
         Sign in to access your account
       </p>
 
@@ -34,30 +34,30 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
           <button
             type="button"
             onClick={() => setUserType("employee")}
-            className={`flex items-center justify-center py-3 px-6 rounded-md text-white ${
+            className={`flex items-center justify-center py-3 md:px-6 px-3 rounded-md text-black font-medium ${
               userType === "employee"
-                ? "bg-gradient-to-r from-blue-500 to-blue-600"
-                : "bg-gradient-to-r from-gray-500/80 to-gray-600/80"
+                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white"
+                : "bg-gradient-to-r border-[3px] border-blue-500 hover:border-blue-600"
             }`}
           >
-            <span className="mr-2">👤</span> Employee
+            <span className="mr-1">👤</span> Employee
           </button>
           <button
             type="button"
             onClick={() => setUserType("employer")}
-            className={`flex items-center justify-center py-3 px-6 rounded-md text-white ${
+            className={`flex items-center justify-center py-3 md:px-6 px-3 rounded-md text-black font-medium ${
               userType === "employer"
-                ? "bg-gradient-to-r from-blue-500 to-blue-600"
-                : "bg-gradient-to-r from-gray-500/80 to-gray-600/80"
+                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white"
+                : "bg-gradient-to-r border-[3px] border-blue-500 hover:border-blue-600"
             }`}
           >
-            <span className="mr-2">👤</span> Employer
+            <span className="mr-1">👤</span> Employer
           </button>
         </div>
 
         {/* Email Field */}
         <div>
-          <label htmlFor="email" className="block mb-2">
+          <label htmlFor="email" className="block mb-2 font-bold text-slate-600">
             Email
           </label>
           <div className="relative">
@@ -70,7 +70,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full bg-[#333333] rounded pl-10 pr-4 py-3 text-white placeholder-gray-400 focus:outline-none"
+              className="w-full bg-[#ffff] rounded pl-10 pr-4 py-3 text-black placeholder-gray-400 focus:outline-none"
               required
             />
           </div>
@@ -78,12 +78,12 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
 
         {/* Password Field */}
         <div>
-          <label htmlFor="password" className="block mb-2">
+          <label htmlFor="password" className="block mb-2 font-bold text-slate-600">
             Password
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <Lock className="w-5 h-5 text-gray-400" />
+              <Lock className="w-5 h-5 text-gray-500" />
             </div>
             <input
               id="password"
@@ -91,7 +91,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="w-full bg-[#333333] rounded pl-10 pr-10 py-3 text-white placeholder-gray-400 focus:outline-none"
+              className="w-full bg-[#ffff] rounded pl-10 pr-10 py-3 text-black placeholder-gray-400 focus:outline-none"
               required
             />
             <button
@@ -110,7 +110,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
 
         {/* Forgot Password */}
         <div className="text-right">
-          <a href="#" className="text-blue-400 hover:text-blue-300 text-sm">
+          <a href="#" className="text-blue-500 hover:text-blue-700 text-sm">
             Forgot Password?
           </a>
         </div>
@@ -118,16 +118,16 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
         {/* Login Button */}
         <button
           type="submit"
-          className="w-full py-3 rounded bg-gradient-to-r from-[#4ECDC4] to-[#2d8a84] text-white hover:opacity-90 font-medium"
+          className="w-full py-3 rounded bg-gradient-to-r bg-green-500 hover:bg-green-600 font-bold"
         >
           Login
         </button>
 
         {/* Sign Up Link */}
         <div className="text-center mt-4">
-          <p className="text-gray-300">
+          <p className="text-gray-500">
             Don't have an account?{" "}
-            <a href="#" className="text-blue-400 hover:text-blue-300">
+            <a href="#" className="text-blue-500 hover:text-blue-700">
               Sign Up
             </a>
           </p>
