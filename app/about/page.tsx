@@ -208,9 +208,9 @@ export default function AboutPage() {
             {!isPlaying && (
               <button
                 onClick={handlePlay}
-                className="absolute flex items-center justify-center bg-[#f73e5d] hover:bg-[#ff6b85] transition-all rounded-full p-6 shadow-lg"
+                className="absolute flex items-center justify-center bg-purple-950 transition-all rounded-full p-6 shadow-lg"
               >
-                <Play className="w-8 h-8 text-white" />
+                <Play className="w-8 h-8 text-white bg-purple-950" />
               </button>
             )}
           </div>
