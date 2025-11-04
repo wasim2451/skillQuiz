@@ -15,24 +15,23 @@ export default function SiteHeader() {
     const pathname = usePathname();
 
     return (
-        <div className="w-full fixed top-0 left-0 z-50">
-            <nav className="flex flex-col w-full md:w-[60vw] mx-auto bg-[#1753d4] text-white md:rounded-b-3xl backdrop-blur-md h-[100px] md:h-[120px] shadow-lg  ">
-                <div className="flex justify-center items-center md:py-2 w-full">
-                    {/* Logo */}
+        <div className="w-full fixed z-50">
+            <nav className="flex flex-col w-full sm:w-[90vw] md:w-[85vw] lg:w-[80vw] xl:w-[75vw] 2xl:w-[65vw] mx-auto bg-[#1753d4] text-white md:rounded-b-3xl backdrop-blur-md h-[80px] sm:h-[90px] md:h-[100px] lg:h-[110px] xl:h-[120px] shadow-lg md:flex-row md:justify-center">
+                <div className="flex justify-between sm:justify-center items-center px-4 sm:px-6 md:px-0 md:py-2 w-full h-full">
+                    {/* Logo - Mobile */}
                     <Link
                         href="/"
-                        className={`md:hidden relative group py-4 px-2 text-sm lg:text-base transition-all ${pathname === "/" ? "text-[#FFE100] font-bold" : "text-white font-semibold"
+                        className={`md:hidden relative group py-3 sm:py-4 px-2 text-sm transition-all ${pathname === "/" ? "text-[#FFE100] font-bold" : "text-white font-semibold"
                             }`}
                     >
-                        <div className="w-[250px] h-10 flex items-center justify-center">
-                            <div className=" flex items-center justify-start over">
+                        <div className="w-[180px] sm:w-[220px] h-8 sm:h-10 flex items-center justify-center">
+                            <div className="flex items-center justify-start">
                                 <Image
                                     src="/logos/skillLogoT.png"
                                     alt="SkillKwiz Logo"
                                     width={200}
                                     height={30}
-                                    className="w-full"
-                                //   style={{ maxWidth: "100%" }}
+                                    className="w-full h-auto"
                                 />
                             </div>
                         </div>
@@ -45,75 +44,76 @@ export default function SiteHeader() {
                         aria-label="Toggle menu"
                     >
                         {isMenuOpen ? (
-                            <X className="h-6 w-6" />
+                            <X className="h-5 w-5 sm:h-6 sm:w-6" />
                         ) : (
-                            <Menu className="h-6 w-6" />
+                            <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
                         )}
                     </button>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex md:items-center md:gap-0 md:felx-nowrap">
+                    <div className="hidden md:flex md:items-center md:justify-between md:gap-1 lg:gap-2 xl:gap-3 2xl:gap-4 md:flex-nowrap md:w-full md:px-3 lg:px-4 xl:px-6 2xl:px-8">
                         <Link
                             href="/"
-                            className={`relative group py-4 px-2 text-sm lg:text-base md:px-4 transition-all ${pathname === "/"
+                            className={`relative group py-3 lg:py-4 px-2 text-sm lg:text-base transition-all flex-shrink-0 ${pathname === "/"
                                 ? "text-[#FFE100] font-bold"
                                 : "text-white font-semibold"
                                 }`}
                         >
                             <div className="relative flex items-center">
-                                <div className="w-[300px] h-10 flex items-center justify-center">
+                                <div className="w-[140px] lg:w-[180px] xl:w-[220px] 2xl:w-[280px] h-8 lg:h-10 flex items-center justify-center">
                                     <Image
                                         src="/logos/skillLogoT.png"
                                         alt="SkillKwiz Logo"
-                                        width={100}
+                                        width={200}
                                         height={30}
-                                        className="w-[80%]"
-                                    // style={{ maxWidth: "100%" }}
+                                        className="w-full h-auto"
                                     />
                                 </div>
                             </div>
                         </Link>
 
-                        <Link
-                            href="/"
-                            className={`relative group py-4 px-2 text-sm md:px-4 md:text-[20px] transition-all ${pathname === "/"
-                                ? "text-[#FFE100] font-semibold"
-                                : "text-white"
-                                }`}
-                        >
-                            <span>Home</span>
-                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-[#FFE100] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
-                        </Link>
-                        <Link
-                            href="/about"
-                            className={`relative group py-4 px-2 text-sm md:px-4 md:text-[18px] transition-all ${pathname === "/about"
-                                ? "text-[#FFE100] font-semibold"
-                                : "text-white"
-                                }`}
-                        >
-                            <span>About Us</span>
-                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-[#FFE100] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
-                        </Link>
-                        <Link
-                            href="/services"
-                            className={`relative group py-4 px-2 text-sm md:px-4 md:text-[20px] transition-all ${pathname === "/services"
-                                ? "text-[#FFE100] font-semibold"
-                                : "text-white"
-                                }`}
-                        >
-                            <span>Services</span>
-                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-[#FFE100] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
-                        </Link>
-                        <Link
-                            href="/blog"
-                            className={`relative group py-4 px-2 text-sm md:px-4 md:text-[20px] transition-all ${pathname === "/blog"
-                                ? "text-[#FFE100] font-semibold"
-                                : "text-white"
-                                }`}
-                        >
-                            <span>Blog</span>
-                            <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-600 text-[#FFE100] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
-                        </Link>
+                        <div className="flex items-center gap-1 lg:gap-2 xl:gap-3 2xl:gap-4">
+                            <Link
+                                href="/"
+                                className={`relative group py-3 lg:py-4 px-2 lg:px-3 xl:px-3 2xl:px-4 text-sm md:text-[15px] lg:text-base xl:text-lg 2xl:text-xl transition-all ${pathname === "/"
+                                    ? "text-[#FFE100] font-semibold"
+                                    : "text-white"
+                                    }`}
+                            >
+                                <span>Home</span>
+                                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-[#FFE100] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+                            </Link>
+                            <Link
+                                href="/about"
+                                className={`relative group py-3 lg:py-4 px-2 lg:px-3 xl:px-3 2xl:px-4 text-sm md:text-[15px] lg:text-base xl:text-lg 2xl:text-xl transition-all whitespace-nowrap ${pathname === "/about"
+                                    ? "text-[#FFE100] font-semibold"
+                                    : "text-white"
+                                    }`}
+                            >
+                                <span>About Us</span>
+                                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-[#FFE100] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+                            </Link>
+                            <Link
+                                href="/services"
+                                className={`relative group py-3 lg:py-4 px-2 lg:px-3 xl:px-3 2xl:px-4 text-sm md:text-[15px] lg:text-base xl:text-lg 2xl:text-xl transition-all ${pathname === "/services"
+                                    ? "text-[#FFE100] font-semibold"
+                                    : "text-white"
+                                    }`}
+                            >
+                                <span>Services</span>
+                                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-[#FFE100] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+                            </Link>
+                            <Link
+                                href="/blog"
+                                className={`relative group py-3 lg:py-4 px-2 lg:px-3 xl:px-3 2xl:px-4 text-sm md:text-[15px] lg:text-base xl:text-lg 2xl:text-xl transition-all ${pathname === "/blog"
+                                    ? "text-[#FFE100] font-semibold"
+                                    : "text-white"
+                                    }`}
+                            >
+                                <span>Blog</span>
+                                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-600 text-[#FFE100] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
 
@@ -124,9 +124,9 @@ export default function SiteHeader() {
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : -10 }}
                             transition={{ duration: 0.3 }}
-                            className="md:hidden flex flex-col items-center pb-6 bg-[#093FB4] rounded-b-3xl absolute top-0 left-0 w-full pt-8 shadow-lg">
+                            className="md:hidden flex flex-col items-center pb-6 bg-[#093FB4] rounded-b-3xl absolute top-0 left-0 w-full pt-6 sm:pt-8 shadow-lg">
                             <div
-                                className={`md:hidden flex flex-col items-center py-[4px] pb-[30px] bg-[#093FB4] absolute top-0 left-0 w-full pt-8 shadow-lg transition-all duration-300 ease-in-out ${isMenuOpen ? "opacity-100 translate-y-0 " : "opacity-0 -translate-y-5 pointer-events-none"
+                                className={`md:hidden flex flex-col items-center py-[4px] pb-[20px] sm:pb-[30px] bg-[#093FB4] absolute top-0 left-0 w-full pt-6 sm:pt-8 shadow-lg transition-all duration-300 ease-in-out ${isMenuOpen ? "opacity-100 translate-y-0 " : "opacity-0 -translate-y-5 pointer-events-none"
                                     }`}
                             >
                                 {[
@@ -139,17 +139,14 @@ export default function SiteHeader() {
                                         key={item.href}
                                         href={item.href}
                                         onClick={() => setIsMenuOpen(false)}
-                                        className="text-white relative group text-lg w-full text-center py-[3px]"
+                                        className="text-white relative group text-base sm:text-lg w-full text-center py-[3px] sm:py-[4px]"
                                     >
-                                        <span className='text-[18px] hover:text-[#FFE100]'>{item.name}</span>
-
+                                        <span className='text-base sm:text-[18px] hover:text-[#FFE100]'>{item.name}</span>
                                     </Link>
                                 ))}
                             </div>
-
                         </motion.div>
                     </div>
-
                 )}
             </nav>
         </div>
