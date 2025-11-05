@@ -10,11 +10,11 @@ export default function EmployerCandidateList() {
   const [selectedSkills, setSelectedSkills] = useState<string[]>(["C#"]);
 
   const toggleSkill = (skill: string) => {
-    if (selectedSkills.includes(skill)) {
-      setSelectedSkills(selectedSkills.filter((s) => s !== skill));
-    } else {
-      setSelectedSkills([...selectedSkills, skill]);
-    }
+    setSelectedSkills((prev) =>
+      prev.includes(skill)
+        ? prev.filter((s) => s !== skill)
+        : [...prev, skill]
+    );
   };
 
   const candidates = [
@@ -41,7 +41,7 @@ export default function EmployerCandidateList() {
     {
       id: 3,
       name: "Kasiro",
-      initial: "M",
+      initial: "K",
       company: "SkillKwizz",
       skills: ["C#", "Java", "SQL"],
       percentile: 85,
@@ -61,33 +61,35 @@ export default function EmployerCandidateList() {
   ];
 
   return (
-    <div className="text-black">
+    <div className="text-black w-full max-w-6xl mx-auto p-4 sm:p-6">
       {/* Search Bar */}
-      <div className="bg-slate-200 rounded-full overflow-hidden mb-6">
-        <div className="grid grid-cols-4">
-          <div className="col-span-1 flex items-center px-4 py-3 border-r border-gray-400">
+      <div className="bg-slate-200 rounded-xl overflow-hidden mb-6 shadow-sm">
+        <div className="flex flex-col sm:grid sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-gray-300">
+          <div className="flex items-center px-4 py-3">
             <Search className="w-5 h-5 mr-2 text-gray-600" />
             <input
               type="text"
-              placeholder="Candidate Email ID/Phone/Skill"
-              className="bg-transparent w-full focus:outline-none text-black"
+              placeholder="Candidate Email ID / Phone / Skill"
+              className="bg-transparent w-full focus:outline-none text-sm sm:text-base"
             />
           </div>
-          <div className="flex items-center px-4 py-3 border-r border-gray-400">
+          <div className="flex items-center px-4 py-3">
             <MapPin className="w-5 h-5 mr-2 text-gray-600" />
             <input
               type="text"
               placeholder="Location"
-              className="bg-transparent w-full focus:outline-none text-black"
+              className="bg-transparent w-full focus:outline-none text-sm sm:text-base"
             />
           </div>
-          <div className="flex items-center px-4 py-3 border-r border-gray-400">
+          <div className="flex items-center px-4 py-3">
             <div className="relative w-full">
-              <select className="w-full bg-transparent appearance-none focus:outline-none text-gray-400">
-                <option value="" className="text-black">Job Family</option>
-                <option value="software" className="text-black">Software Development</option>
-                <option value="data" className="text-black">Data Science</option>
-                <option value="design" className="text-black">Design</option>
+              <select className="w-full bg-transparent appearance-none focus:outline-none text-gray-600 text-sm sm:text-base p-2 cursor-pointer">
+                <option value="" disabled>
+                  Job Family
+                </option>
+                <option>Software Development</option>
+                <option>Data Science</option>
+                <option>Design</option>
               </select>
               <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                 <svg
@@ -95,40 +97,44 @@ export default function EmployerCandidateList() {
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
                     d="M19 9l-7 7-7-7"
-                  ></path>
+                  />
                 </svg>
               </div>
             </div>
           </div>
           <div className="flex items-center justify-between px-4 py-3">
-            <button className="text-gray-400 hover:text-gray-500">Clear</button>
-            <button className="bg-blue-500 text-white font-medium px-6 py-1 rounded-full hover:bg-blue-600">
+            <button className="text-gray-500 text-sm hover:text-gray-700 transition">
+              Clear
+            </button>
+            <button className="bg-blue-500 text-white font-medium px-4 py-2 text-sm sm:text-base rounded-full hover:bg-blue-600 transition">
               Search
             </button>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-6">
-        {/* Filter Section */}
+      {/* Layout: Filters + List */}
+      <div className="flex flex-col md:grid md:grid-cols-4 gap-5 sm:gap-6">
+        {/* Filters */}
         <div className="col-span-1">
-          <div className="bg-blue-200 rounded-lg overflow-hidden">
-            <div className="bg-blue-400 p-4 text-xl font-medium">Filter</div>
+          <div className="bg-blue-200 rounded-lg overflow-hidden shadow">
+            <div className="bg-blue-400 p-3 sm:p-4 text-lg sm:text-xl font-semibold text-white">
+              Filter
+            </div>
 
-            <div className="border-t border-blue-400 p-4">
-              <h3 className="text-lg mb-3 font-medium">Gender</h3>
+            {/* Gender Filter */}
+            <div className="border-t border-blue-400 p-3 sm:p-4">
+              <h3 className="text-base sm:text-lg mb-3 font-medium">Gender</h3>
               <div className="space-y-2">
-                <div className="flex items-center">
+                <label className="flex items-center text-sm sm:text-base">
                   <input
                     type="checkbox"
-                    id="male"
                     checked={
                       selectedGender === "male" || selectedGender === "both"
                     }
@@ -139,12 +145,11 @@ export default function EmployerCandidateList() {
                     }
                     className="w-4 h-4 mr-2"
                   />
-                  <label htmlFor="male">Male</label>
-                </div>
-                <div className="flex items-center">
+                  Male
+                </label>
+                <label className="flex items-center text-sm sm:text-base">
                   <input
                     type="checkbox"
-                    id="female"
                     checked={
                       selectedGender === "female" || selectedGender === "both"
                     }
@@ -155,92 +160,78 @@ export default function EmployerCandidateList() {
                     }
                     className="w-4 h-4 mr-2"
                   />
-                  <label htmlFor="female">Female</label>
-                </div>
+                  Female
+                </label>
               </div>
             </div>
 
-            <div className="border-t border-blue-400 p-4">
-              <h3 className="text-lg mb-3">Skills</h3>
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="csharp"
-                    checked={selectedSkills.includes("C#")}
-                    onChange={() => toggleSkill("C#")}
-                    className="w-4 h-4 mr-2"
-                  />
-                  <label htmlFor="csharp">C#</label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="java"
-                    checked={selectedSkills.includes("Java")}
-                    onChange={() => toggleSkill("Java")}
-                    className="w-4 h-4 mr-2"
-                  />
-                  <label htmlFor="java">Java</label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="sql"
-                    checked={selectedSkills.includes("SQL")}
-                    onChange={() => toggleSkill("SQL")}
-                    className="w-4 h-4 mr-2"
-                  />
-                  <label htmlFor="sql">SQL</label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="python"
-                    checked={selectedSkills.includes("Python")}
-                    onChange={() => toggleSkill("Python")}
-                    className="w-4 h-4 mr-2"
-                  />
-                  <label htmlFor="python">Python</label>
-                </div>
+            {/* Skills Filter */}
+            <div className="border-t border-blue-400 p-3 sm:p-4">
+              <h3 className="text-base sm:text-lg mb-3 font-medium">Skills</h3>
+              <div className="space-y-2 text-sm sm:text-base">
+                {["C#", "Java", "SQL", "Python"].map((skill) => (
+                  <label key={skill} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={selectedSkills.includes(skill)}
+                      onChange={() => toggleSkill(skill)}
+                      className="w-4 h-4 mr-2"
+                    />
+                    {skill}
+                  </label>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Candidate List */}
+        {/* Candidate Cards */}
         <div className="col-span-3 space-y-4">
           {candidates.map((candidate) => (
-            <div key={candidate.id} className="bg-blue-100 rounded-lg p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
+            <div
+              key={candidate.id}
+              className="bg-blue-100 rounded-lg p-4 sm:p-5 shadow hover:shadow-md transition"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                {/* Left - Candidate Info */}
+                <div className="flex items-start sm:items-center gap-4">
+                  {/* Fix: make profile icon always circular */}
                   <div
-                    className={`w-12 h-12 rounded-full ${candidate.color} flex items-center justify-center text-white text-2xl font-bold mr-4`}
+                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden ${candidate.color} flex items-center justify-center text-white text-xl sm:text-2xl font-bold flex-shrink-0`}
+                    style={{ aspectRatio: "1 / 1" }}
                   >
                     {candidate.initial}
                   </div>
                   <div>
-                    <h3 className="text-xl font-medium">{candidate.name}</h3>
-                    <p className="text-green-600 font-medium">{candidate.company}</p>
-                    <div className="flex items-center mt-1">
-                      <p className="text-sm">
-                        Skills: {candidate.skills.join(", ")}
-                      </p>
-                      <div className="mx-4 h-4 border-l border-gray-400"></div>
-                      <p className="text-sm">
-                        Percentile Score: {candidate.percentile}
-                      </p>
-                      <div className="mx-4 h-4 border-l border-gray-400"></div>
+                    <h3 className="text-lg sm:text-xl font-semibold leading-tight">
+                      {candidate.name}
+                    </h3>
+                    <p className="text-green-700 font-medium text-sm sm:text-base">
+                      {candidate.company}
+                    </p>
+                    <div className="flex flex-wrap items-center gap-2 mt-1 text-xs sm:text-sm text-gray-700">
+                      <p>Skills: {candidate.skills.join(", ")}</p>
+                      <span className="hidden sm:inline">|</span>
+                      <p>Percentile: {candidate.percentile}</p>
+                      <span className="hidden sm:inline">|</span>
                       <div className="flex items-center">
-                        <MapPin className="w-4 h-4 mr-1" />
-                        <p className="text-sm">{candidate.location}</p>
+                        <MapPin className="w-4 h-4 mr-1 text-gray-600" />
+                        {candidate.location}
                       </div>
                     </div>
                   </div>
                 </div>
-                <button className="bg-green-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-green-600">
-                  <a href="dummy/dummy.pdf" download>View Report</a>
-                </button>
+
+                {/* Right - Action */}
+                <div>
+                  <a
+                    href="dummy/dummy.pdf"
+                    download
+                    className="inline-block bg-green-700 text-white text-sm sm:text-base font-semibold px-4 sm:px-5 py-2 rounded-lg hover:bg-green-600 transition"
+                  >
+                    View Report
+                  </a>
+                </div>
               </div>
             </div>
           ))}
