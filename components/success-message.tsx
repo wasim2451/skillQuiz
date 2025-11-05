@@ -24,7 +24,7 @@ export default function SuccessMessage({
       </div>
 
       <h2 className="text-3xl font-semibold mb-4">{title}</h2>
-      <p className="text-slate-400 mb-8 max-w-md mx-auto">{message}</p>
+      <p className="text-slate-500 mb-8 max-w-md mx-auto">{message}</p>
 
       <button
         onClick={onContinue}

@@ -114,7 +114,7 @@ export default function ServicesPage() {
                 <>
                   {/* Employer Screens */}
                   {employerRegistrationSuccess ? (
-                    <div className="bg-gradient-to-r from-[#3a4a7b]/90 to-[#9ba3b9]/90 rounded-lg p-8 backdrop-blur-sm">
+                    <div className="bg-gradient-to-r bg-slate-100 rounded-lg p-8 backdrop-blur-sm">
                       <SuccessMessage
                         title="Registration Successful!"
                         message="Your employer account has been created successfully. You can now access all employer features."
@@ -123,7 +123,7 @@ export default function ServicesPage() {
                       />
                     </div>
                   ) : employerScreen === "registration" ? (
-                    <div className="bg-gradient-to-r from-[#3a4a7b]/90 to-[#9ba3b9]/90 rounded-lg p-8 backdrop-blur-sm">
+                    <div className="bg-gradient-to-r bg-slate-200 rounded-lg p-8 backdrop-blur-sm">
                       <EmployerRegistration
                         onSubmit={handleEmployerRegistrationComplete}
                       />
