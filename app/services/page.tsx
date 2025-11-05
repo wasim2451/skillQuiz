@@ -13,19 +13,16 @@ import EmployerCandidateList from "@/components/employer-candidate-list";
 import SuccessMessage from "@/components/success-message";
 
 export default function ServicesPage() {
-  // Authentication state
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userType, setUserType] = useState<"employer" | "employee" | null>(
     null
   );
 
-  // Registration success states
   const [employeeRegistrationSuccess, setEmployeeRegistrationSuccess] =
     useState(false);
   const [employerRegistrationSuccess, setEmployerRegistrationSuccess] =
     useState(false);
 
-  // Screen states
   const [employeeScreen, setEmployeeScreen] = useState<
     "registration" | "assessment"
   >("registration");
@@ -33,68 +30,56 @@ export default function ServicesPage() {
     "registration" | "profile" | "assessment" | "candidates"
   >("registration");
 
-  // Handle login
   const handleLogin = (type: "employer" | "employee") => {
     setIsLoggedIn(true);
     setUserType(type);
 
-    // Set initial screen based on user type
     if (type === "employer") {
-      // In a real app, check if user has completed registration
-      // For demo, we'll assume new users need to register
       setEmployerScreen("registration");
     } else {
       setEmployeeScreen("registration");
     }
   };
 
-  // Handle employee registration completion
   const handleEmployeeRegistrationComplete = () => {
     setEmployeeRegistrationSuccess(true);
   };
 
-  // Handle employer registration completion
   const handleEmployerRegistrationComplete = () => {
     setEmployerRegistrationSuccess(true);
   };
 
-  // Continue after employee registration success
   const continueToEmployeeAssessment = () => {
     setEmployeeRegistrationSuccess(false);
     setEmployeeScreen("assessment");
   };
 
-  // Continue after employer registration success
   const continueToEmployerProfile = () => {
     setEmployerRegistrationSuccess(false);
     setEmployerScreen("profile");
   };
 
   return (
-    <div className="min-h-screen bg-[#ffff] relative overflow-x-hidden">
-      <div className="relative z-10 pt-24">
-        <div className="container mx-auto px-4 max-w-5xl py-4 md:py-[50px] text-sm">
+    <div className="min-h-screen bg-white relative overflow-x-hidden">
+      <div className="relative z-10 pt-20 sm:pt-24">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-10 max-w-6xl py-6 sm:py-10 text-sm sm:text-base">
           {!isLoggedIn ? (
-            // Login Form
-            <div className="bg-slate-100 rounded-lg md:p-8 p-1 backdrop-blur-sm max-w-md mx-auto">
+            <div className="bg-slate-100 rounded-lg p-4 sm:p-8 backdrop-blur-sm max-w-sm sm:max-w-md md:max-w-lg mx-auto shadow-md">
               <LoginForm onLogin={handleLogin} />
             </div>
           ) : (
-            // Logged in content
             <>
-              {/* Back button - only shown on assessment screen */}
               {userType === "employee" && employeeScreen === "assessment" && (
                 <button
                   onClick={() => setEmployeeScreen("registration")}
-                  className="text-white mb-4"
+                  className="text-white mb-3 sm:mb-5 bg-[#1753d4] p-2 rounded-full hover:bg-blue-600 transition"
                 >
-                  <ChevronLeft className="w-8 h-8" />
+                  <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
                 </button>
               )}
 
-              {/* Content Panel */}
               {userType === "employee" ? (
-                <div className="bg-slate-100 rounded-lg p-8">
+                <div className="bg-slate-100 rounded-lg p-4 sm:p-8 shadow-md">
                   {employeeRegistrationSuccess ? (
                     <SuccessMessage
                       title="Registration Successful!"
@@ -112,9 +97,8 @@ export default function ServicesPage() {
                 </div>
               ) : (
                 <>
-                  {/* Employer Screens */}
                   {employerRegistrationSuccess ? (
-                    <div className="bg-gradient-to-r bg-slate-100 rounded-lg p-8 backdrop-blur-sm">
+                    <div className="bg-slate-100 rounded-lg p-4 sm:p-8 backdrop-blur-sm shadow-md">
                       <SuccessMessage
                         title="Registration Successful!"
                         message="Your employer account has been created successfully. You can now access all employer features."
@@ -123,42 +107,42 @@ export default function ServicesPage() {
                       />
                     </div>
                   ) : employerScreen === "registration" ? (
-                    <div className="bg-gradient-to-r bg-slate-200 rounded-lg p-8 backdrop-blur-sm">
+                    <div className="bg-slate-200 rounded-lg p-4 sm:p-8 backdrop-blur-sm shadow-md">
                       <EmployerRegistration
                         onSubmit={handleEmployerRegistrationComplete}
                       />
                     </div>
                   ) : (
                     <>
-                      {/* Employer Navigation Tabs */}
-                      <div className="bg-slate-100 rounded-lg mb-4 md:mb-[24px]">
-                        <div className="grid grid-cols-3 gap-1">
+                      {/* Responsive Tabs */}
+                      <div className="bg-slate-100 rounded-lg mb-3 sm:mb-6 shadow-sm overflow-hidden">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-1 text-center">
                           <button
                             onClick={() => setEmployerScreen("profile")}
-                            className={`py-3 px-4 text-center text-black font-semibold ${
+                            className={`py-2 sm:py-3 px-2 sm:px-4 font-semibold transition ${
                               employerScreen === "profile"
-                                ? "bg-blue-400 rounded-lg"
-                                : ""
+                                ? "bg-[#1753d4] text-white text-lg sm:text-xl rounded-md"
+                                : "hover:bg-blue-100 text-black"
                             }`}
                           >
                             Profile
                           </button>
                           <button
                             onClick={() => setEmployerScreen("assessment")}
-                            className={`py-3 px-4 text-center text-black font-semibold ${
+                            className={`py-2 sm:py-3 px-2 sm:px-4 font-semibold transition ${
                               employerScreen === "assessment"
-                                ? "bg-blue-400 rounded-lg"
-                                : ""
+                                ? "bg-[#1753d4] text-white text-lg sm:text-xl rounded-md"
+                                : "hover:bg-blue-100 text-black"
                             }`}
                           >
                             Assessment Request
                           </button>
                           <button
                             onClick={() => setEmployerScreen("candidates")}
-                            className={`py-3 px-4 text-center text-black font-semibold ${
+                            className={`py-2 sm:py-3 px-2 sm:px-4 font-semibold transition ${
                               employerScreen === "candidates"
-                                ? "bg-blue-400 rounded-lg"
-                                : ""
+                                ? "bg-[#1753d4] text-white text-lg sm:text-xl rounded-md"
+                                : "hover:bg-blue-100 text-black"
                             }`}
                           >
                             Candidate List
@@ -167,7 +151,7 @@ export default function ServicesPage() {
                       </div>
 
                       {/* Employer Content */}
-                      <div className="bg-gradient-to-r bg-slate-100  rounded-lg p-8 backdrop-blur-sm">
+                      <div className="bg-slate-100 rounded-lg p-4 sm:p-6 lg:p-8 mt-4 sm:mt-8 backdrop-blur-sm shadow-md">
                         {employerScreen === "profile" && <EmployerProfile />}
                         {employerScreen === "assessment" && (
                           <EmployerAssessmentRequest />

@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function EmployerProfile() {
   return (
     <div className="text-black">
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-8 bg-slate-200 rounded-lg p-6">
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-8 bg-blue-100 rounded-lg p-6">
         <div className="w-40 h-40 rounded-full overflow-hidden flex-shrink-0">
           <Image
             src="/images/user.png"
