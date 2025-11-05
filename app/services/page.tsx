@@ -131,13 +131,13 @@ export default function ServicesPage() {
                   ) : (
                     <>
                       {/* Employer Navigation Tabs */}
-                      <div className="bg-[#b8bdc7] rounded-lg mb-4">
+                      <div className="bg-slate-100 rounded-lg mb-4 md:mb-[24px]">
                         <div className="grid grid-cols-3 gap-1">
                           <button
                             onClick={() => setEmployerScreen("profile")}
-                            className={`py-3 px-4 text-center text-white font-medium ${
+                            className={`py-3 px-4 text-center text-black font-semibold ${
                               employerScreen === "profile"
-                                ? "bg-[#2d5184] rounded-lg"
+                                ? "bg-blue-400 rounded-lg"
                                 : ""
                             }`}
                           >
@@ -145,9 +145,9 @@ export default function ServicesPage() {
                           </button>
                           <button
                             onClick={() => setEmployerScreen("assessment")}
-                            className={`py-3 px-4 text-center text-white font-medium ${
+                            className={`py-3 px-4 text-center text-black font-semibold ${
                               employerScreen === "assessment"
-                                ? "bg-[#2d5184] rounded-lg"
+                                ? "bg-blue-400 rounded-lg"
                                 : ""
                             }`}
                           >
@@ -155,9 +155,9 @@ export default function ServicesPage() {
                           </button>
                           <button
                             onClick={() => setEmployerScreen("candidates")}
-                            className={`py-3 px-4 text-center text-white font-medium ${
+                            className={`py-3 px-4 text-center text-black font-semibold ${
                               employerScreen === "candidates"
-                                ? "bg-[#2d5184] rounded-lg"
+                                ? "bg-blue-400 rounded-lg"
                                 : ""
                             }`}
                           >
@@ -167,7 +167,7 @@ export default function ServicesPage() {
                       </div>
 
                       {/* Employer Content */}
-                      <div className="bg-gradient-to-r from-[#3a4a7b]/90 to-[#9ba3b9]/90 rounded-lg p-8 backdrop-blur-sm">
+                      <div className="bg-gradient-to-r bg-slate-100  rounded-lg p-8 backdrop-blur-sm">
                         {employerScreen === "profile" && <EmployerProfile />}
                         {employerScreen === "assessment" && (
                           <EmployerAssessmentRequest />
