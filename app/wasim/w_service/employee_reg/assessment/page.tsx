@@ -16,7 +16,7 @@ async function Page(props: Props) {
 
     return (
         <>
-            <h1 className='text-center mt-3'>Schedule Your Assessment Page</h1>
+            <h1 className='text-center mt-3 font-bold'>Schedule Your Assessment Page</h1>
         </>
     )
 }
