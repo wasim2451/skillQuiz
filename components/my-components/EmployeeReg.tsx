@@ -1,7 +1,6 @@
 'use client';
 import React, { ChangeEvent } from 'react'
 import { useState,useTransition } from 'react'
-
 import {saveDeatilsOfEmployee} from '@/actions/auth'
 interface Props {}
 

@@ -46,7 +46,7 @@ export async function saveDeatilsOfEmployee(
     file: File | null }) {
         const res=await saveEmployeeRegistartonDetails(data);
         if(res.status===true){
-            redirect("/wasim/w_service");
+            redirect("/wasim/w_service/employee_reg/assessment");
         }else{
             redirect("/");
         }
