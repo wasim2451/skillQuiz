@@ -58,11 +58,14 @@ export default function LoginForm() {
 
                     />
                     <button
+                        type='button'
                         onClick={() => setShowpass(!showpass)}
                     >{showpass ? '☑️' : '❎'}</button>
                 </div>
                 <div className='flex justify-center items-center w-full'>
-                    <button className='p-2 bg-green-500 w-full text-white font-bold hover:bg-green-600'>Log in</button>
+                    <button
+                     type="submit"
+                     className='p-2 bg-green-500 w-full text-white font-bold hover:bg-green-600'>{isPending ? "Logging in ..." : "Log In "}</button>
                 </div>
 
 
