@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   description:
     "SkillKwiz provides innovative skill assessment solutions for recruitment and employee development.",
   generator: "v0.dev",
+  icons: {
+    icon: "/favicon/1.png", // Path relative to the `public` directory
+  },
 };
 
 export default function RootLayout({

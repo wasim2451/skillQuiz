@@ -1,3 +1,5 @@
+import { hostname } from 'os';
+
 let userConfig = undefined;
 try {
   // try to import ESM first
@@ -19,9 +21,13 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  images: {
-    unoptimized: true,
-  },
+   images: {
+        remotePatterns: [
+            {
+                hostname: "upload.wikimedia.org",
+            },
+        ],
+},
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
