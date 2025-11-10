@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState , useTransition } from 'react';
 import { storedataToDB } from '@/actions/storeData';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 type QuizItem = {
   id: number;
   question: string;
