@@ -76,7 +76,15 @@ function Page() {
     <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-6">
 
       {/* LEFT SIDEBAR */}
-      <div className="md:w-[240px] w-full flex flex-col gap-3">
+      <div
+        className="
+        md:w-[240px] w-full 
+        flex flex-col gap-3 
+        max-h-[75vh] 
+        overflow-y-auto 
+        pr-2
+        "
+    >
 
         <button
           onClick={showAllResults}
