@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState , useTransition } from 'react';
 import { storedataToDB } from '@/actions/storeData';
+import { useRouter } from 'next/router';
 type QuizItem = {
   id: number;
   question: string;
@@ -44,6 +45,7 @@ function QuizCard({
   const [showResult, setShowResult] = useState(false);
   const[isPending,startTransition]=useTransition();
   const[buttonAbled,setButtonAbled]=useState(false);
+  const router=useRouter();
 
   useEffect(() => {
     console.log('User Answers:', userAns);
@@ -110,6 +112,10 @@ function QuizCard({
     });
   }
 
+  const handleDashboard=()=>{
+        router.push('/quiz/DashboardPage/');
+  }
+
   // Show result screen
   if (showResult && ansObj.status) {
     return (
@@ -152,6 +158,12 @@ function QuizCard({
           className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-[1.02]"
         >
           Retake Quiz
+        </button>
+        <button
+          onClick={handleDashboard}
+          className="w-full bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-[1.02]"
+        >
+          Go to Dashboard
         </button>
       </div>
     );
