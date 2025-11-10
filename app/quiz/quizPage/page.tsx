@@ -10,6 +10,7 @@ function Page({ name }: { name: string }) {
     incorrect: 0,
     percentage: 0,
     status: 'pending',
+    username:""
   };
 
   return (

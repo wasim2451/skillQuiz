@@ -15,6 +15,7 @@ type AnsObj = {
   incorrect: number;
   percentage: number;
   status: string;
+  username:string;
 };
 
 function QuizCard({
@@ -27,17 +28,22 @@ function QuizCard({
   initialObj: Object;
 }) {
   const [userAns, setUserAns] = useState<{ id: number; ans: string }[]>([]);
+  const[userName,setUserName]=useState<string>("");
+  const[names,setName]=useState<string>("");
   const [index, setIndex] = useState(0);
   const [ansObj, setAnsObj] = useState<AnsObj>({
+
     totalQues: 0,
     totalScore: 0,
     correct: 0,
     incorrect: 0,
     percentage: 0,
     status: '',
+    username:""
   });
   const [showResult, setShowResult] = useState(false);
   const[isPending,startTransition]=useTransition();
+  const[buttonAbled,setButtonAbled]=useState(false);
 
   useEffect(() => {
     console.log('User Answers:', userAns);
@@ -78,7 +84,9 @@ function QuizCard({
       correct,
       incorrect,
       percentage,
-      status,}
+      status,
+      username:userName
+    }
     setAnsObj(finalObj);
     setShowResult(true);
     startTransition(async()=>{
@@ -98,6 +106,7 @@ function QuizCard({
       incorrect: 0,
       percentage: 0,
       status: '',
+      username:''
     });
   }
 
@@ -109,7 +118,7 @@ function QuizCard({
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
             Quiz Complete! 🎉
           </h2>
-          <p className="text-gray-600">Here are your results, {name || 'User'}</p>
+          <p className="text-gray-600">Here are your results, {names || 'User'}</p>
         </div>
 
         <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-6">
@@ -150,15 +159,29 @@ function QuizCard({
 
   // Show quiz screen
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 flex flex-col gap-5">
+    <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 flex flex-col gap-5 mt-[10vh]">
       {/* Header */}
       <div className="text-center border-b pb-4">
         <h2 className="text-xl sm:text-2xl font-bold text-gray-800">
-          Welcome {name || 'User'} 👋
+          Welcome {names || 'User'} 👋
         </h2>
         <p className="text-gray-500 text-sm sm:text-base mt-1">
           Best of luck for your quiz!
         </p>
+        <label htmlFor="name">Enter your Name </label>
+        <input type="text" value={userName}
+        placeholder='Enter your Name here ...'
+        onChange={(e)=>setUserName(e.target.value)}
+        disabled={buttonAbled}
+        className='bg-yellow-50 rounded-xl p-4 border-1 placeholder-gray-500'
+        />
+        <button onClick={()=>{
+            setName(userName);
+            setButtonAbled(true);
+        }}
+        disabled={buttonAbled}
+        className='bg-orange-400 text-white font-medium p-3 ml-1 rounded-xl'
+        >Submit Name</button>
       </div>
 
       {/* Progress Bar */}

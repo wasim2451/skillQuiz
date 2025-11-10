@@ -6,6 +6,7 @@ interface objectType{
       incorrect: Number;
       percentage: Number;
       status: String;
+      username:String;
 }
 let data :objectType []=[]
 export default data;
