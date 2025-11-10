@@ -3,10 +3,13 @@
 import { useState } from "react";
 import { Info } from "lucide-react";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
+
+
 
 export default function ScheduleAssessment() {
   const [selectedCompany, setSelectedCompany] = useState<string>("microsoft");
-
+   const router=useRouter(); 
   function handleSubmit() {
     Swal.fire({
       title: "✅ Thank You!",
@@ -14,6 +17,7 @@ export default function ScheduleAssessment() {
       icon: "success",
       confirmButtonColor: "#2563eb",
     });
+    router.push('/quiz/quizPage');
   }
 
   return (
