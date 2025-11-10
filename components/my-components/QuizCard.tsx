@@ -1,6 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState , useTransition } from 'react';
+import { storedataToDB } from '@/actions/storeData';
 type QuizItem = {
   id: number;
   question: string;
@@ -37,6 +37,7 @@ function QuizCard({
     status: '',
   });
   const [showResult, setShowResult] = useState(false);
+  const[isPending,startTransition]=useTransition();
 
   useEffect(() => {
     console.log('User Answers:', userAns);
@@ -72,17 +73,19 @@ function QuizCard({
     const score = correct * 10;
     const percentage = Math.floor((score / totalScore) * 100);
     const status = percentage > 70 ? 'Passed' : 'Failed';
-
-    setAnsObj({
-      totalQues,
+    const finalObj={totalQues,
       totalScore,
       correct,
       incorrect,
       percentage,
-      status,
-    });
+      status,}
+    setAnsObj(finalObj);
     setShowResult(true);
-  }
+    startTransition(async()=>{
+        await storedataToDB(finalObj);
+    })
+}
+    
 
   function handleRetakeQuiz() {
     setUserAns([]);
