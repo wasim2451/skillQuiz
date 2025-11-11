@@ -125,9 +125,9 @@ export default function SiteHeader() {
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : -10 }}
                                 transition={{ duration: 0.3 }}
-                                className="md:hidden flex flex-col items-center pb-6 bg-[#093FB4] rounded-b-3xl absolute top-0 left-0 w-full pt-6 sm:pt-8 shadow-lg">
+                                className="md:hidden flex flex-col items-center pb-6 bg-[#093FB4] rounded-b-3xl absolute top-0 left-0 w-full pt-6 sm:pt-8 shadow-lg ">
                                 <div
-                                    className={`md:hidden flex flex-col items-center py-[4px] pb-[20px] sm:pb-[30px] bg-[#093FB4] absolute top-0 left-0 w-full pt-6 sm:pt-8 shadow-lg transition-all duration-300 ease-in-out ${isMenuOpen ? "opacity-100 translate-y-0 " : "opacity-0 -translate-y-5 pointer-events-none"
+                                    className={`md:hidden flex flex-col items-center justify-evenly py-[4px] pb-[20px] sm:pb-[30px] bg-[#093FB4] absolute top-0 left-0 w-full pt-6 sm:pt-8 shadow-lg transition-all duration-300 ease-in-out h-[50vh] ${isMenuOpen ? "opacity-100 translate-y-0 " : "opacity-0 -translate-y-5 pointer-events-none"
                                         }`}
                                 >
                                     {[
