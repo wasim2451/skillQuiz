@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import data from '@/w_lib/results.json';
 
 // CHART IMPORTS
@@ -31,10 +31,40 @@ function Page() {
     const [allUsers] = useState<Result[]>(sorted);
     const [currentUser, setCurrentUser] = useState<Result | null>(null);
     const [searchItems, setSearchItems] = useState(allUsers);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [totalPages, setTotalPages] = useState<number>(Math.ceil(allUsers.length / 5));
+    const [pagesArr, setPageArr] = useState<Array<number>>([])
+
+    useEffect(() => {
+        //Everytime allUsers will change-> totalPages should change 
+        setTotalPages(Math.ceil(allUsers.length / 5));
+        setPageArr(Array.from({ length: totalPages }, (_, i) => i + 1));
+    }, [allUsers]);
+
+    useEffect(() => {
+        showAllResults();
+    }, []);
+
     const showAllResults = () => {
         setCurrentUser(null);
-        setSearchItems(allUsers);
+        handlePageFun(1);
     };
+
+    //Pagination functionality 
+    const handlePageFun = (pageNo: number) => {
+        setCurrentPage(pageNo);
+        let startIndex = (pageNo - 1) * 5;
+        let endIndex = (startIndex + 5);
+        let tempArr = allUsers.slice(startIndex, endIndex);
+        setSearchItems(tempArr);
+    }
+    const handleNextOrPrev = (type: string) => {
+        if (type == 'next' && currentPage >= 1 && currentPage < totalPages) {
+            handlePageFun(currentPage + 1);
+        } else if (type == 'prev' && currentPage > 1 && currentPage <= totalPages) {
+            handlePageFun(currentPage - 1);
+        }
+    }
 
     const showUser = (username: string) => {
         const user = allUsers.find((u) => u.username === username) || null;
@@ -83,24 +113,77 @@ function Page() {
     return (
         <div className="mt-[15vh] px-4">
             {/* Search Bar */}
-            <div className='w-[11%] mx-[45%] border-red-400 border-[3px] bg-red-100 rounded-sm'>
-                <input type="text" placeholder='Search Names' className='bg-red-100 rounded-sm p-[12px] w-full placeholder-gray-500 font-mono'
+            <div className="max-w-[300px] mx-auto mt-4 mb-6">
+                <input
+                    type="text"
+                    placeholder="Search Names"
+                    className="w-full p-3 bg-red-100 border-red-400 border rounded font-mono placeholder-gray-600"
                     onChange={(e) => searchFunc(e.target.value.trim())}
                 />
             </div>
+            <div className="flex md:hidden justify-between items-center gap-3 mt-4 px-4 py-3 bg-white rounded-xl shadow-md mb-4">
+                {/* Previous Button */}
+                <button
+                    onClick={() => handleNextOrPrev("prev")}
+                    disabled={currentPage == 1}
+                    className={`
+            flex items-center justify-center
+            w-20 h-10 rounded-lg font-semibold
+            transition-all duration-200
+            ${currentPage == 1
+                            ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
+                            : 'bg-gradient-to-r from-blue-500 to-blue-600 text-white active:scale-95 shadow-md'
+                        }
+        `}
+                >
+                    <span className="text-lg">←</span>
+                    <span className="ml-1 text-xs">Prev</span>
+                </button>
+
+                {/* Page Indicator */}
+                <div className="flex flex-col items-center justify-center min-w-[80px]">
+                    <div className="text-xs text-gray-500 font-medium">Page</div>
+                    <div className="flex items-center gap-1">
+                        <span className="text-xl font-bold text-blue-600">{currentPage}</span>
+                        <span className="text-gray-400">/</span>
+                        <span className="text-sm text-gray-600">{totalPages}</span>
+                    </div>
+                </div>
+
+                {/* Next Button */}
+                <button
+                    onClick={() => handleNextOrPrev("next")}
+                    disabled={totalPages == currentPage}
+                    className={`
+            flex items-center justify-center
+            w-20 h-10 rounded-lg font-semibold
+            transition-all duration-200
+            ${totalPages == currentPage
+                            ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
+                            : 'bg-gradient-to-r from-blue-500 to-blue-600 text-white active:scale-95 shadow-md'
+                        }
+        `}
+                >
+                    <span className="mr-1 text-xs">Next</span>
+                    <span className="text-lg">→</span>
+                </button>
+            </div>
+
             {/* MAX WIDTH CENTERED CONTAINER */}
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-6">
                 {/* LEFT SIDEBAR */}
                 <div
                     className="
-                    md:w-[240px] w-full 
-                    flex flex-col gap-3 
-                    max-h-[75vh] 
-                    overflow-y-auto 
-                    p-[30px]
+                        md:w-[240px] w-full 
+                        flex flex-col gap-3 
+                        max-h-[75vh] 
+                        overflow-y-auto 
+                        p-4 md:p-[30px] 
+                        rounded-lg
+                      bg-gray-50
                     "
                 >
-
+                    <span className='font-mono'>Page {currentPage}</span>
                     <button
                         onClick={showAllResults}
                         className="bg-yellow-400 hover:bg-yellow-500 p-3 font-semibold rounded-md"
@@ -125,7 +208,12 @@ function Page() {
                 </div>
 
                 {/* RIGHT PANEL */}
-                <div className="bg-white rounded-xl w-full border-[3px] my-[20px] md:my-[30px] border-slate-200 p-[40px] px-[50px]">
+                <div className="
+                            bg-white rounded-xl w-full 
+                            border-[3px] border-slate-200 
+                            p-4 sm:p-6 md:p-[40px] 
+                            my-4 md:my-[30px]
+                            ">
 
                     {/* ✅ SINGLE USER VIEW */}
                     {currentUser && (
@@ -199,13 +287,37 @@ function Page() {
                     )}
                 </div>
             </div>
-            <div className='flex justify-center items-center gap-2'>
-                <button>Prev</button>
-                <button className=' p-2 bg-blue-300'>1</button>
-                <button className=' p-2 bg-blue-300'>2</button>
-                <button className=' p-2 bg-blue-300'>3</button>
-                <button>Next</button>
+            {/* ✅ DESKTOP BOTTOM PAGINATION (hidden on mobile) */}
+            <div className="hidden md:flex justify-center items-center gap-2 my-6">
+                <button
+                    onClick={() => handleNextOrPrev("prev")}
+                    disabled={currentPage == 1}
+                    className="px-3 py-1 bg-gray-200 rounded disabled:opacity-40"
+                >
+                    Prev
+                </button>
+
+                {pagesArr.map((page, index) => (
+                    <button
+                        key={index}
+                        onClick={() => handlePageFun(page)}
+                        className={`px-3 py-1 rounded 
+                        ${currentPage === page ? "bg-blue-500 text-white" : "bg-gray-200"}
+                     `}
+                    >
+                        {page}
+                    </button>
+                ))}
+
+                <button
+                    disabled={totalPages == currentPage}
+                    onClick={() => handleNextOrPrev("next")}
+                    className="px-3 py-1 bg-gray-200 rounded disabled:opacity-40"
+                >
+                    Next
+                </button>
             </div>
+
         </div>
     );
 }
