@@ -30,15 +30,26 @@ function Page() {
 
     const [allUsers] = useState<Result[]>(sorted);
     const [currentUser, setCurrentUser] = useState<Result | null>(null);
-
+    const[searchItems,setSearchItems]=useState(allUsers);
     const showAllResults = () => {
         setCurrentUser(null);
+        setSearchItems(allUsers);
     };
 
     const showUser = (username: string) => {
         const user = allUsers.find((u) => u.username === username) || null;
         setCurrentUser(user);
     };
+
+    const searchFunc=(item:string)=>{
+        let tempArr=allUsers.filter((i:Result)=>i.username.toLowerCase().includes(item.toLowerCase()));
+        if(tempArr.length==0){
+            setSearchItems([]);
+        }else{
+            setSearchItems(tempArr);
+        }
+       
+    }
 
     // ✅ Chart.js data for ALL USERS
     const allPassed = allUsers.filter((u) => u.status === 'Passed').length;
@@ -71,10 +82,14 @@ function Page() {
 
     return (
      <div className="mt-[15vh] px-4">
-
+          {/* Search Bar */}
+        <div className='w-[11%] mx-[45%] border-red-400 border-[3px] bg-red-100 rounded-sm'>
+            <input type="text" placeholder='Search Names'  className='bg-red-100 rounded-sm p-[12px] w-full placeholder-gray-500 font-mono'
+            onChange={(e)=>searchFunc(e.target.value.trim())}
+            />
+        </div>
     {/* MAX WIDTH CENTERED CONTAINER */}
     <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-6">
-
       {/* LEFT SIDEBAR */}
       <div
         className="
@@ -82,7 +97,7 @@ function Page() {
         flex flex-col gap-3 
         max-h-[75vh] 
         overflow-y-auto 
-        pr-2
+        p-[30px]
         "
     >
 
@@ -93,7 +108,7 @@ function Page() {
           Show All Results
         </button>
 
-        {allUsers.map((u) => (
+        {searchItems.length>0?searchItems.map((u) => (
           <button
             key={u.username}
             onClick={() => showUser(u.username)}
@@ -107,11 +122,11 @@ function Page() {
           >
             {u.username}
           </button>
-        ))}
+        )):(<p>No Items Matched</p>)}
       </div>
 
       {/* RIGHT PANEL */}
-      <div className="bg-white rounded-xl w-full p-6 shadow-md">
+      <div className="bg-white rounded-xl w-full border-[3px] my-[20px] md:my-[30px] border-slate-200 p-[40px] px-[50px]">
 
         {/* ✅ SINGLE USER VIEW */}
         {currentUser && (
