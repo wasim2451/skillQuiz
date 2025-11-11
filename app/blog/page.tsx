@@ -68,8 +68,8 @@ export default function BlogPage() {
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-bold mb-2 text-[#011937]">
-                    {post.title}
+                  <h3 className="text-lg font-bold mb-2 text-[#011937] hover:text-blue-500">
+                    <a href="" download="dummy/dummy.pdf">{post.title}</a>
                   </h3>
                   <p className="text-sm text-[#000102] opacity-80">
                     {post.subtitle}
@@ -91,8 +91,8 @@ export default function BlogPage() {
               className="w-full h-64 object-cover"
             />
             <div className="p-6">
-              <h3 className="text-xl font-bold text-[#0d0f12] mb-2">
-                Top 10 Tech Skills That Can Land You a High-Paying Job
+              <h3 className="text-xl font-bold text-[#0d0f12] mb-2 hover:text-red-400">
+                <a href="" download="dummy/dummy.pdf">Top 10 Tech Skills That Can Land You a High-Paying Job</a>
               </h3>
               <p className="text-sm text-gray-600">
                 Why Tech Skills Are Essential in 2025
@@ -109,8 +109,8 @@ export default function BlogPage() {
               className="w-full h-64 object-cover"
             />
             <div className="p-6">
-              <h3 className="text-xl font-bold text-[#001d3f] mb-2">
-                How to Stay Motivated While Learning New Skills
+              <h3 className="text-xl font-bold text-[#001d3f] mb-2 hover:text-red-400">
+                <a href="" download="dummy/dummy.pdf" >How to Stay Motivated While Learning New Skills</a>
               </h3>
               <p className="text-sm text-gray-600">
                 Why Motivation Is Key to Skill Development
@@ -174,8 +174,8 @@ export default function BlogPage() {
                   <p className="text-xs text-[#f73e5d] font-semibold uppercase mb-1">
                     Trends to Watch in 2025
                   </p>
-                  <h3 className="text-lg font-bold text-[#00418d] leading-snug">
-                    {article.title}
+                  <h3 className="text-lg font-bold text-[#00418d] leading-snug hover:text-blue-600">
+                    <a href="" download="dummy/dummy.pdf">{article.title}</a>
                   </h3>
                 </div>
               </div>
