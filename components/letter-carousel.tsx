@@ -65,72 +65,85 @@ export default function LetterCarousel() {
   }, [currentSlide, isAnimating]);
 
   return (
-    <div className="relative w-full md:h-[80vh] h-[400px] overflow-hidden bg-white">
+    <div className="">
+          <div className="relative w-full h-[400px] sm:h-[500px] md:h-[75vh] lg:h-[80vh] overflow-hidden  shadow-xl">
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 w-full h-full transition-all duration-500 ease-in-out ${
+          className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out flex flex-col justify-center items-center text-center ${
             index === currentSlide
-              ? "opacity-100 translate-x-0"
-              : index < currentSlide
-              ? "opacity-0 -translate-x-full"
-              : "opacity-0 translate-x-full"
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-95"
           }`}
         >
-          {/* Background Image */}
-          <div className="absolute inset-0 blur-[0.5px] brightness-85">
+          <div className="absolute inset-0">
             <Image
               src={slide.backgroundImage || "/placeholder.svg"}
-              alt={`${slide.title} background`}
+              alt={slide.title}
               fill
-              className="object-cover object-top"
+              className="object-cover object-center brightness-75"
               priority={index === 0}
             />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
           </div>
 
-          {/* Title at bottom of image */}
-          <div className="absolute bottom-5 md:bottom-16 left-0 right-0 flex flex-col justify-end items-center text-center z-10 px-6">
-            <h3 className="text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-extrabold text-white tracking-wide">
+          {/* Animated Letters */}
+          <div className="flex justify-center gap-2 md:gap-4 mb-4 relative z-10">
+            {slide.letters.map((letter, i) => (
+              <span
+                key={i}
+                className="text-white text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold drop-shadow-lg animate-pulse"
+              >
+                {letter}
+              </span>
+            ))}
+          </div>
+
+          {/* Slide Text */}
+          <div className="px-6 md:px-12 lg:px-24 relative z-10">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-yellow-300 mb-3 drop-shadow-md">
               {slide.title}
             </h3>
-            <p className="text-sm md:text-xl lg:text-[25px] xl:text-[30px] 2xl:text-[35px] text-gray-100 mt-2 tracking-wider font-bold">
+            <p className="text-sm sm:text-base md:text-xl text-gray-100 font-medium max-w-3xl mx-auto leading-relaxed">
               {slide.description}
             </p>
           </div>
         </div>
       ))}
 
-      {/* Navigation buttons */}
+      {/* Navigation Buttons */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md z-20"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white p-2 rounded-full shadow-md z-20 transition-all duration-300 hover:scale-110"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-3 w-3 md:h-6 md:w-6 text-[#00418d]" />
+        <ChevronLeft className="h-5 w-5 md:h-6 md:w-6 text-blue-600" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md z-20"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white p-2 rounded-full shadow-md z-20 transition-all duration-300 hover:scale-110"
         aria-label="Next slide"
       >
-        <ChevronRight className="h-3 w-3 md:h-6 md:w-6 text-[#00418d]" />
+        <ChevronRight className="h-5 w-5 md:h-6 md:w-6 text-blue-600" />
       </button>
 
       {/* Indicators */}
-      <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+      <div className="absolute bottom-3 md:bottom-5 left-0 right-0 flex justify-center gap-2 z-20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`md:w-2.5 md:h-2.5 w-1 h-1 rounded-full transition-all ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentSlide
-                ? "bg-[#ffff] w-8"
-                : "bg-[#FFE100]"
+                ? "bg-yellow-300 scale-125"
+                : "bg-white/60 hover:bg-yellow-200"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
+        </div>
     </div>
+  
   );
 }
